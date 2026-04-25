@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 40" role="img" aria-label="Formas de pagamento: Visa, Master, Elo, Hipercard, Pix, Boleto">
+  <style>
+    .card { fill: #FFFFFF; stroke: #E8DDCB; stroke-width: 1; }
+    .txt  { font-family: 'Inter', system-ui, sans-serif; font-weight: 800; font-size: 11px; }
+  </style>
+
+  <!-- Visa -->
+  <rect class="card" x="0"   y="4" width="56" height="32" rx="6"/>
+  <text class="txt" x="28"  y="24" text-anchor="middle" fill="#1A1F71">VISA</text>
+
+  <!-- Master -->
+  <rect class="card" x="62"  y="4" width="56" height="32" rx="6"/>
+  <circle cx="83" cy="20" r="8" fill="#EB001B" opacity="0.9"/>
+  <circle cx="97" cy="20" r="8" fill="#F79E1B" opacity="0.9"/>
+
+  <!-- Elo -->
+  <rect class="card" x="124" y="4" width="56" height="32" rx="6"/>
+  <text class="txt" x="152" y="24" text-anchor="middle" fill="#000">ELO</text>
+
+  <!-- Hipercard -->
+  <rect class="card" x="186" y="4" width="56" height="32" rx="6"/>
+  <text class="txt" x="214" y="24" text-anchor="middle" fill="#B3131B" font-size="9">HIPER</text>
+
+  <!-- Pix -->
+  <rect class="card" x="248" y="4" width="56" height="32" rx="6"/>
+  <text class="txt" x="276" y="24" text-anchor="middle" fill="#32BCAD">PIX</text>
+
+  <!-- Boleto -->
+  <rect class="card" x="310" y="4" width="70" height="32" rx="6"/>
+  <text class="txt" x="345" y="24" text-anchor="middle" fill="#4B3F33" font-size="9">BOLETO</text>
+</svg>

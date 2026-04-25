@@ -1,0 +1,31 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# Editores
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Diretórios sensíveis
+.env
+.env.local
+.env.*.local
+.vercel/
+
+# Dependências (caso adicione futuramente)
+node_modules/
+
+# Backups e temporários
+*.bak
+*.tmp
+~*
