@@ -225,42 +225,12 @@
     }
   });
 
-  /* ---------- KIT VIDEO (autoplay muted, click → fullscreen + áudio) ---------- */
+  /* ---------- KIT VIDEO (autoplay mudo, sem interação por enquanto) ---------- */
+  // Garante que o vídeo fica mudo mesmo se o navegador tentar restaurar estado.
   const kitVideo = document.querySelector('.kit-video__el');
-  const kitVideoFigure = document.querySelector('[data-kit-video]');
-  const kitVideoCta = document.querySelector('.kit-video__cta');
-
-  function openKitVideoWithSound() {
-    if (!kitVideo) return;
-    kitVideo.muted = false;
-    kitVideo.currentTime = 0;
-    kitVideo.play().catch(() => {});
-    const target = kitVideoFigure || kitVideo;
-    const fs = target.requestFullscreen
-      || target.webkitRequestFullscreen
-      || target.mozRequestFullScreen
-      || target.msRequestFullscreen;
-    if (fs) {
-      try { fs.call(target); } catch (e) { /* fallback silencioso */ }
-    }
-  }
-
   if (kitVideo) {
-    kitVideoFigure?.addEventListener('click', openKitVideoWithSound);
-    kitVideoCta?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openKitVideoWithSound();
-    });
-
-    function onFsChange() {
-      const isFs = document.fullscreenElement || document.webkitFullscreenElement;
-      if (!isFs) {
-        kitVideo.muted = true;
-        kitVideo.play().catch(() => {});
-      }
-    }
-    document.addEventListener('fullscreenchange', onFsChange);
-    document.addEventListener('webkitfullscreenchange', onFsChange);
+    kitVideo.muted = true;
+    kitVideo.play().catch(() => {});
   }
 
   /* ---------- Lazy reveal (leve, sem lib) ---------- */
