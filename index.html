@@ -24,7 +24,7 @@
   <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="assets/produto/hero.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/produto/01.jpg" fetchpriority="high" />
   <link rel="icon" type="image/svg+xml" href="assets/icones/favicon.svg" />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -106,23 +106,45 @@
 
   <main>
     <!-- ============ BLOCO 2: HERO ============ -->
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="hero" aria-labelledby="hero-sub">
       <div class="container">
-        <div class="hero__header">
-          <span class="hero__eyebrow">EDIÇÃO DIA DAS MÃES 2026</span>
-          <h1 id="hero-title" class="hero__title">
-            Esse ano, <span>acerte no presente.</span>
-          </h1>
-        </div>
-
         <div class="hero__grid">
         <div class="hero__media">
-          <img src="assets/produto/hero.webp" alt="Jogo completo de 10 panelas cappuccino D'Italia sobre mesa de cozinha"
-               width="1240" height="1240" fetchpriority="high" />
+          <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Galeria do jogo de panelas">
+            <div class="carousel__track" data-carousel-track>
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="1 de 8 — vídeo de abertura">
+                <video src="assets/produto/07.mp4" muted loop playsinline preload="metadata" autoplay aria-label="Vídeo de abertura do jogo de panelas"></video>
+              </div>
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="2 de 8">
+                <img src="assets/produto/01.jpg" alt="Jogo de panelas cappuccino — foto 1" loading="eager" fetchpriority="high" />
+              </div>
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="3 de 8">
+                <img src="assets/produto/02.jpg" alt="Jogo de panelas cappuccino — foto 2" loading="lazy" />
+              </div>
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="4 de 8">
+                <img src="assets/produto/03.jpg" alt="Jogo de panelas cappuccino — foto 3" loading="lazy" />
+              </div>
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="5 de 8">
+                <img src="assets/produto/04.jpg" alt="Jogo de panelas cappuccino — foto 4" loading="lazy" />
+              </div>
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="6 de 8">
+                <img src="assets/produto/05.jpg" alt="Jogo de panelas cappuccino — foto 5" loading="lazy" />
+              </div>
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="7 de 8">
+                <img src="assets/produto/06.jpg" alt="Jogo de panelas cappuccino — foto 6" loading="lazy" />
+              </div>
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="8 de 8 — vídeo de encerramento">
+                <video src="assets/produto/08.mp4" muted loop playsinline preload="metadata" aria-label="Vídeo de encerramento"></video>
+              </div>
+            </div>
+            <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Slide anterior">‹</button>
+            <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Próximo slide">›</button>
+            <div class="carousel__dots" data-carousel-dots role="tablist" aria-label="Selecionar slide"></div>
+          </div>
         </div>
 
         <div class="hero__content">
-          <p class="hero__sub">
+          <p id="hero-sub" class="hero__sub">
             Jogo completo de <strong>10 panelas antiaderentes + utensílios</strong>. A panela boa que ela nunca compra pra ela mesma.
           </p>
 
@@ -176,29 +198,29 @@
     <!-- ============ BLOCO 4: GALERIA ============ -->
     <section class="gallery" id="galeria" aria-labelledby="gallery-title">
       <div class="container">
-        <h2 id="gallery-title" class="section-title">Cada detalhe pensado pra durar anos</h2>
-        <p class="section-sub">Cor cappuccino exclusiva, tampas de vidro temperado e antiaderente de 5 camadas.</p>
+        <h2 id="gallery-title" class="section-title">Acabamento de luxo em cada detalhe</h2>
+        <p class="section-sub">O tipo de panela que se vê em cozinha de chef. Cor cappuccino exclusiva, vidro temperado e revestimento profissional de 5 camadas — sofisticação que ela vai exibir.</p>
 
         <div class="gallery__grid">
           <figure class="gallery__item gallery__item--wide">
-            <img src="assets/produto/galeria-1.webp" alt="Jogo completo de panelas cappuccino na mesa" loading="lazy" width="800" height="600" />
-            <figcaption>A cor cappuccino combina com qualquer cozinha — clássica e elegante.</figcaption>
+            <img src="assets/produto/galeria-1.webp" alt="Jogo completo cappuccino sobre bancada de mármore" loading="lazy" width="800" height="600" />
+            <figcaption>Cappuccino exclusivo — uma cor que veste a cozinha como um traço de joia.</figcaption>
           </figure>
           <figure class="gallery__item">
-            <img src="assets/produto/galeria-2.webp" alt="Tampa de vidro temperado com saída de vapor" loading="lazy" width="600" height="600" />
-            <figcaption>Tampas de vidro temperado com saída de vapor — acompanhe o cozimento sem abrir.</figcaption>
+            <img src="assets/produto/galeria-2.webp" alt="Tampa em vidro temperado com saída de vapor" loading="lazy" width="600" height="600" />
+            <figcaption>Vidro temperado com saída de vapor — visor cristalino, acabamento de butique.</figcaption>
           </figure>
           <figure class="gallery__item">
-            <img src="assets/produto/galeria-3.webp" alt="Cabos antitérmicos de baquelite" loading="lazy" width="600" height="600" />
-            <figcaption>Cabos antitérmicos de baquelite — não esquentam, segurança total ao manusear.</figcaption>
+            <img src="assets/produto/galeria-3.webp" alt="Cabos em baquelite antitérmico" loading="lazy" width="600" height="600" />
+            <figcaption>Cabos em baquelite antitérmico — peso equilibrado, toque firme, zero risco.</figcaption>
           </figure>
           <figure class="gallery__item">
             <img src="assets/produto/galeria-4.webp" alt="Revestimento antiaderente de 5 camadas" loading="lazy" width="600" height="600" />
-            <figcaption>Antiaderente de 5 camadas — a comida não gruda, a limpeza é em segundos.</figcaption>
+            <figcaption>Antiaderente profissional de 5 camadas — performance de marca importada.</figcaption>
           </figure>
           <figure class="gallery__item">
-            <img src="assets/produto/galeria-5.webp" alt="Jogo completo na caixa original" loading="lazy" width="600" height="600" />
-            <figcaption>Vem na caixa original, com nota fiscal e garantia de fábrica.</figcaption>
+            <img src="assets/produto/galeria-5.webp" alt="Embalagem original com selo de qualidade" loading="lazy" width="600" height="600" />
+            <figcaption>Embalagem original com nota fiscal — apresentação digna de presente fino.</figcaption>
           </figure>
         </div>
       </div>
@@ -207,21 +229,82 @@
     <!-- ============ BLOCO 6: O QUE VEM NA CAIXA ============ -->
     <section class="whatsinside" aria-labelledby="whats-title">
       <div class="container">
-        <h2 id="whats-title" class="section-title">10 peças que cobrem TUDO que ela cozinha</h2>
-        <p class="section-sub">Um kit completo — do arroz de todo dia ao bife de domingo.</p>
+        <h2 id="whats-title" class="section-title">Conjunto para completar a cozinha</h2>
+        <p class="section-sub">Perfeito do dia à noite.</p>
 
         <ul class="whatsinside__list">
-          <li><span class="whatsinside__num">01</span><strong>Panela 16cm</strong> — ideal para arroz pequeno e molhos</li>
-          <li><span class="whatsinside__num">02</span><strong>Panela 18cm</strong> — arroz da família, sopas</li>
-          <li><span class="whatsinside__num">03</span><strong>Caçarola 18cm</strong> — refogados</li>
-          <li><span class="whatsinside__num">04</span><strong>Caçarola 20cm</strong> — feijão, ensopados</li>
-          <li><span class="whatsinside__num">05</span><strong>Leiteira 14cm</strong> — café, leite, calda</li>
-          <li><span class="whatsinside__num">06</span><strong>Frigideira 18cm</strong> — ovo, omelete</li>
-          <li><span class="whatsinside__num">07</span><strong>Frigideira 20cm</strong> — bife, panqueca</li>
-          <li><span class="whatsinside__num">08</span><strong>Espátula em nylon</strong></li>
-          <li><span class="whatsinside__num">09</span><strong>Colher em nylon</strong></li>
-          <li><span class="whatsinside__num">10</span><strong>Escumadeira em nylon</strong></li>
+          <li>
+            <span class="whatsinside__num">01</span>
+            <div class="whatsinside__body">
+              <strong>Panela Nº 16</strong>
+              <span class="whatsinside__specs">Ø 16 cm · 1,4 L · alt. 7 cm</span>
+            </div>
+          </li>
+          <li>
+            <span class="whatsinside__num">02</span>
+            <div class="whatsinside__body">
+              <strong>Panela Nº 18</strong>
+              <span class="whatsinside__specs">Ø 18 cm · 2,0 L · alt. 7,5 cm</span>
+            </div>
+          </li>
+          <li>
+            <span class="whatsinside__num">03</span>
+            <div class="whatsinside__body">
+              <strong>Caçarola Nº 18</strong>
+              <span class="whatsinside__specs">Ø 18 cm · 2,0 L · alt. 7,0 cm</span>
+            </div>
+          </li>
+          <li>
+            <span class="whatsinside__num">04</span>
+            <div class="whatsinside__body">
+              <strong>Caçarola Nº 20</strong>
+              <span class="whatsinside__specs">Ø 20 cm · 2,7 L · alt. 9,0 cm</span>
+            </div>
+          </li>
+          <li>
+            <span class="whatsinside__num">05</span>
+            <div class="whatsinside__body">
+              <strong>Leiteira Nº 14</strong>
+              <span class="whatsinside__specs">Ø 14,0 cm · 1,6 L · alt. 10,5 cm</span>
+            </div>
+          </li>
+          <li>
+            <span class="whatsinside__num">06</span>
+            <div class="whatsinside__body">
+              <strong>Frigideira Francesa Nº 18</strong>
+              <span class="whatsinside__specs">Ø 18,0 cm · 0,6 L · alt. 3,5 cm</span>
+            </div>
+          </li>
+          <li>
+            <span class="whatsinside__num">07</span>
+            <div class="whatsinside__body">
+              <strong>Frigideira Francesa Nº 20</strong>
+              <span class="whatsinside__specs">Ø 20,0 cm · 0,7 L · alt. 3,0 cm</span>
+            </div>
+          </li>
+          <li>
+            <span class="whatsinside__num">08</span>
+            <div class="whatsinside__body"><strong>Espátula em nylon</strong></div>
+          </li>
+          <li>
+            <span class="whatsinside__num">09</span>
+            <div class="whatsinside__body"><strong>Colher em nylon</strong></div>
+          </li>
+          <li>
+            <span class="whatsinside__num">10</span>
+            <div class="whatsinside__body"><strong>Escumadeira em nylon</strong></div>
+          </li>
         </ul>
+
+        <figure class="kit-video" data-kit-video>
+          <video class="kit-video__el" id="kit-video"
+                 src="assets/produto/09.mp4"
+                 muted loop playsinline autoplay preload="metadata"
+                 aria-label="Vídeo do conjunto em uso — toque para ouvir"></video>
+          <button class="kit-video__cta" type="button" aria-label="Assistir com som em tela cheia">
+            <span aria-hidden="true">🔊</span> Toque para ouvir
+          </button>
+        </figure>
       </div>
     </section>
 
