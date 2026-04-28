@@ -225,12 +225,35 @@
     }
   });
 
-  /* ---------- KIT VIDEO (autoplay mudo, sem interação por enquanto) ---------- */
-  // Garante que o vídeo fica mudo mesmo se o navegador tentar restaurar estado.
+  /* ---------- KIT VIDEO (autoplay mudo + botão toggle de áudio) ---------- */
   const kitVideo = document.querySelector('.kit-video__el');
+  const kitToggle = document.querySelector('[data-kit-video-toggle]');
+
   if (kitVideo) {
     kitVideo.muted = true;
     kitVideo.play().catch(() => {});
+  }
+
+  if (kitVideo && kitToggle) {
+    const icon = kitToggle.querySelector('.kit-video__icon');
+    const label = kitToggle.querySelector('.kit-video__label');
+
+    kitToggle.addEventListener('click', () => {
+      kitVideo.muted = !kitVideo.muted;
+      const isMuted = kitVideo.muted;
+
+      // O botão mostra a AÇÃO disponível, não o estado atual:
+      // - se está mudo  → "🔊 Toque para ouvir"
+      // - se tem som    → "🔇 Silenciar"
+      if (icon)  icon.textContent  = isMuted ? '🔊' : '🔇';
+      if (label) label.textContent = isMuted ? 'Toque para ouvir' : 'Silenciar';
+      kitToggle.setAttribute('aria-pressed', isMuted ? 'false' : 'true');
+      kitToggle.setAttribute('aria-label',
+        isMuted ? 'Ativar som do vídeo' : 'Silenciar vídeo');
+
+      // Garante que continua tocando após o toggle.
+      kitVideo.play().catch(() => {});
+    });
   }
 
   /* ---------- Lazy reveal (leve, sem lib) ---------- */

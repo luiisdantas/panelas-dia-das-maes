@@ -503,6 +503,28 @@ p  { margin: 0 0 1em; }
   width: 100%; height: 100%; object-fit: cover; display: block;
   pointer-events: none;
 }
+.kit-video__cta {
+  position: absolute;
+  bottom: 14px; left: 50%; transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--coffee-900);
+  border: 0;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+.kit-video__cta:hover { background: var(--white); transform: translateX(-50%) scale(1.04); }
+.kit-video__cta[aria-pressed="true"] {
+  background: var(--coffee-900);
+  color: var(--white);
+}
+.kit-video__cta[aria-pressed="true"]:hover { background: var(--cappuccino-700); }
 
 /* ============================================================
    TESTIMONIALS
