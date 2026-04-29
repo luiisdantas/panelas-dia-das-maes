@@ -222,6 +222,12 @@ p  { margin: 0 0 1em; }
     radial-gradient(ellipse at bottom left, var(--cream-100), transparent 55%),
     var(--cream-50);
 }
+.hero__header {
+  text-align: left;
+  margin-bottom: 22px;
+}
+.hero__header .hero__title { margin-bottom: 0; }
+
 .hero__grid {
   display: grid;
   grid-template-columns: 1fr;
