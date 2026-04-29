@@ -77,10 +77,31 @@
     });
   }
 
+  // Normaliza nome de cidade: tira acentos, baixa caixa, remove espaços extras
+  function normalizeCity(s) {
+    return (s || '')
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
+  // Cidades dentro do raio simbólico (Jardim Graciosa, Campina Grande do Sul / PR + ~15km)
+  const SYMBOLIC_CITIES = ['campina grande do sul', 'quatro barras', 'colombo'];
+
   // Tabela regional (fallback, configurável)
   // Ajuste conforme sua tabela Melhor Envio / política final.
   const SHIPPING_RULES = [
-    // Curitiba e região metropolitana (por UF=PR e DDD de cidade)
+    // Frete simbólico — raio ~15km do Jardim Graciosa (CGS/PR)
+    {
+      match: (uf, city) => uf === 'PR' && SYMBOLIC_CITIES.includes(normalizeCity(city)),
+      price: 10.00,
+      priceOriginal: 19.90,
+      days: '1 dia útil',
+      label: 'frete simbólico — entrega local',
+      symbolic: true,
+    },
+    // Curitiba e demais cidades do PR
     { match: (uf) => uf === 'PR', price: 19.9, days: '1-2 dias úteis', label: 'região metropolitana de Curitiba' },
     // Sudeste
     { match: (uf) => ['SP','RJ','MG','ES'].includes(uf), price: 29.9, days: '3-5 dias úteis', label: 'Sudeste' },
@@ -102,6 +123,27 @@
     if (!result) return;
     result.textContent = text;
     result.dataset.state = state || '';
+  }
+
+  // Resultado especial com risco no preço antigo + tag "frete simbólico"
+  function setResultSymbolic(city, oldPrice, newPrice, days) {
+    if (!result) return;
+    result.textContent = '';
+    result.dataset.state = 'ok';
+
+    const pkg = document.createTextNode(`📦 ${city} · `);
+    const oldEl = document.createElement('s');
+    oldEl.className = 'shipping__old';
+    oldEl.textContent = `R$ ${priceBR(oldPrice)}`;
+    const newEl = document.createElement('strong');
+    newEl.className = 'shipping__new';
+    newEl.textContent = ` R$ ${priceBR(newPrice)}`;
+    const sep = document.createTextNode(` · ${days} · `);
+    const tag = document.createElement('span');
+    tag.className = 'shipping__symbolic';
+    tag.textContent = 'frete simbólico 🚚';
+
+    result.append(pkg, oldEl, newEl, sep, tag);
   }
 
   if (form) {
@@ -126,13 +168,18 @@
         }
 
         const uf = data.uf;
-        const rule = SHIPPING_RULES.find((r) => r.match(uf)) || SHIPPING_RULES[SHIPPING_RULES.length - 1];
-        const city = data.localidade ? `${data.localidade}/${uf}` : uf;
+        const rawCity = data.localidade || '';
+        const rule = SHIPPING_RULES.find((r) => r.match(uf, rawCity)) || SHIPPING_RULES[SHIPPING_RULES.length - 1];
+        const city = rawCity ? `${rawCity}/${uf}` : uf;
 
-        setResult(
-          `📦 ${city} · Frete R$ ${priceBR(rule.price)} · ${rule.days}`,
-          'ok'
-        );
+        if (rule.symbolic) {
+          setResultSymbolic(city, rule.priceOriginal, rule.price, rule.days);
+        } else {
+          setResult(
+            `📦 ${city} · Frete R$ ${priceBR(rule.price)} · ${rule.days}`,
+            'ok'
+          );
+        }
       } catch (err) {
         setResult('Erro ao consultar o CEP. Tente novamente em instantes.', 'error');
       }
