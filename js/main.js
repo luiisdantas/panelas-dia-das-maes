@@ -86,13 +86,13 @@
       .trim();
   }
 
-  // Cidades dentro do raio simbólico (Jardim Graciosa, Campina Grande do Sul / PR + ~15km)
-  const SYMBOLIC_CITIES = ['campina grande do sul', 'quatro barras', 'colombo'];
+  // Cidades dentro do raio simbólico (Jardim Graciosa, Campina Grande do Sul / PR)
+  const SYMBOLIC_CITIES = ['campina grande do sul', 'quatro barras'];
 
   // Tabela regional (fallback, configurável)
   // Ajuste conforme sua tabela Melhor Envio / política final.
   const SHIPPING_RULES = [
-    // Frete simbólico — raio ~15km do Jardim Graciosa (CGS/PR)
+    // Frete simbólico — entrega local (CGS + Quatro Barras / PR)
     {
       match: (uf, city) => uf === 'PR' && SYMBOLIC_CITIES.includes(normalizeCity(city)),
       price: 10.00,
