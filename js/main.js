@@ -507,10 +507,24 @@
 
   /* ── TESTIMONIALS LIGHTBOX ── */
   const testiWraps = document.querySelectorAll('[data-testi-img]');
-  if (testiWraps.length) {
-    const wrapsArr = Array.from(testiWraps);
-    wrapsArr.forEach((wrap, i) => {
-      wrap.addEventListener('click', () => lbOpen(wrapsArr, i));
+  testiWraps.forEach(wrap => {
+    wrap.addEventListener('click', () => {
+      const galleryAttr = wrap.dataset.gallery;
+      if (galleryAttr) {
+        // Multi-image: build fake slide elements from JSON list of src paths
+        const srcs = JSON.parse(galleryAttr);
+        const slides = srcs.map(src => {
+          const el  = document.createElement('div');
+          const img = document.createElement('img');
+          img.src = src;
+          el.appendChild(img);
+          return el;
+        });
+        lbOpen(slides, 0);
+      } else {
+        // Single image: open just the wrap itself
+        lbOpen([wrap], 0);
+      }
     });
-  }
+  });
 })();
