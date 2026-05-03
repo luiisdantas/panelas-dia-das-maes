@@ -576,14 +576,9 @@ p  { margin: 0 0 1em; }
 .gallery__item--wide { grid-column: 1 / -1; }
 .gallery__item img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-.gallery__item--wide img { aspect-ratio: 16 / 9; }
-.gallery__item figcaption {
-  padding: 12px 14px;
-  font-size: var(--fs-sm);
-  color: var(--ink-2);
+  display: block;
+  object-fit: contain;
+  background: var(--white);
 }
 
 /* ============================================================
