@@ -311,12 +311,9 @@
       if (el.tagName === 'A') el.href = url;
     });
 
-    // Scrolla o carrossel até o slide da variação (slide 2, índice 1)
+    // Scrolla o carrossel direto para o slide 2 (índice 1)
     if (carouselTrack) {
-      const targetSlide = carouselTrack.querySelectorAll('.carousel__slide')[1];
-      if (targetSlide) {
-        targetSlide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
+      carouselTrack.scrollTo({ left: carouselTrack.offsetWidth, behavior: 'smooth' });
     }
   }
 
