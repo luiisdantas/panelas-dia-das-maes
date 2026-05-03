@@ -290,19 +290,10 @@
       b.setAttribute('aria-checked', b === btn ? 'true' : 'false');
     });
 
-    // Foto do carrossel — só troca se a imagem realmente existir
-    // (evita 404 e mantém a foto anterior como fallback gracioso).
+    // Troca a foto do slide 2 para o kit selecionado
     if (variationTargetImg && img) {
       variationTargetImg.alt = `Jogo de Panelas ${name}`;
-      const probe = new Image();
-      probe.onload  = () => { variationTargetImg.src = img; };
-      probe.onerror = () => {
-        // Mantém imagem anterior — útil enquanto cores/*.jpg não foram salvas
-        if (typeof console !== 'undefined' && console.warn) {
-          console.warn('[variation] foto não encontrada (mantendo anterior):', img);
-        }
-      };
-      probe.src = img;
+      variationTargetImg.src = img;
     }
 
     // Nome do modelo abaixo da H1
