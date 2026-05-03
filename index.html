@@ -366,61 +366,81 @@
 
       <div class="testi-track" data-testi-track>
 
-        <!-- 1 — 1 imagem -->
-        <article class="testi-card">
-          <div class="testi-card__img-wrap" data-testi-img>
-            <img src="assets/depoimentos/dep-1.jpg" alt="Panelas em uso no fogão — avaliação de Joana" loading="lazy" />
+        <!-- 1 — Joana · 1 imagem -->
+        <article class="testi-card" data-testi-card
+          data-text="Amei minhas panelas, e como vcs já viram na foto, já fiz comidas com elas. O tamanho é ideal para minhas necessidades, e não são tão pequenas, serve para famílias de mais de três pessoas! bem aderente tbem. Gostei bastante."
+          data-name="Joana"
+          data-location="São José dos Pinhais">
+          <div class="testi-card__img-wrap">
+            <img src="assets/depoimentos/dep-1.jpg" alt="Panelas em uso no fogão" loading="lazy" />
           </div>
-          <div class="testi-card__body">
-            <div class="testi-card__stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
-            <p>"Amei minhas panelas, e como vcs já viram na foto, já fiz comidas com elas. O tamanho é ideal para minhas necessidades, e não são tão pequenas, serve para famílias de mais de três pessoas! bem aderente tbem. Gostei bastante."</p>
-            <footer><strong>Joana</strong> · São José dos Pinhais</footer>
-          </div>
-        </article>
-
-        <!-- 2 — 3 imagens -->
-        <article class="testi-card">
-          <div class="testi-card__img-wrap" data-testi-img
-               data-gallery='["assets/depoimentos/dep-2a.jpg","assets/depoimentos/dep-2b.jpg","assets/depoimentos/dep-2c.jpg"]'>
-            <img src="assets/depoimentos/dep-2a.jpg" alt="Kit completo — avaliação de Carla" loading="lazy" />
-            <span class="testi-card__img-count" aria-hidden="true">1 / 3</span>
-          </div>
-          <div class="testi-card__body">
-            <div class="testi-card__stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
-            <p>"Panelas lindas, as tampas cabem em todas as panelas, na minha opinião poderia vir todas com tampa, mas as frigideiras e a jarra grande ñ têm tampa. Mas o material é bem resistente, com certeza fique muito feliz ☺️."</p>
-            <footer><strong>Carla</strong> · Curitiba</footer>
+          <div class="testi-card__overlay">
+            <div class="testi-card__stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+            <p class="testi-card__preview">"Amei minhas panelas, e como vcs já viram na foto, já fiz comidas com elas."</p>
+            <p class="testi-card__author">Joana · São José dos Pinhais</p>
+            <button class="testi-card__more" type="button" aria-label="Ver avaliação completa de Joana">Ver tudo</button>
           </div>
         </article>
 
-        <!-- 3 — 2 imagens -->
-        <article class="testi-card">
-          <div class="testi-card__img-wrap" data-testi-img
-               data-gallery='["assets/depoimentos/dep-3a.jpg","assets/depoimentos/dep-3b.jpg"]'>
-            <img src="assets/depoimentos/dep-3a.jpg" alt="Jogo Marrom desembalado — avaliação de Patrícia" loading="lazy" />
-            <span class="testi-card__img-count" aria-hidden="true">1 / 2</span>
+        <!-- 2 — Carla · 3 imagens -->
+        <article class="testi-card" data-testi-card
+          data-gallery='["assets/depoimentos/dep-2a.jpg","assets/depoimentos/dep-2b.jpg","assets/depoimentos/dep-2c.jpg"]'
+          data-text="Panelas lindas, as tampas cabem em todas as panelas, na minha opinião poderia vir todas com tampa, mas as frigideiras e a jarra grande ñ têm tampa. Outro fato é que em uma panela, a maior a tampa ñ encaixa direito. Mas o material é bem resistente, com certeza fique muito feliz ☺️."
+          data-name="Carla"
+          data-location="Curitiba">
+          <div class="testi-card__img-wrap">
+            <img src="assets/depoimentos/dep-2a.jpg" alt="Kit completo" loading="lazy" />
           </div>
-          <div class="testi-card__body">
-            <div class="testi-card__stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
-            <p>"Surpreendido com a qualidade! o jogo de panelas tem um acabamento impecável e o material parece ser bem resistente. Pelo preço pago, o custo-benefício é imbatível. Já testei e a antiaderência é nota 10, nada gruda. Recomendo muito!"</p>
-            <footer><strong>Patrícia</strong> · Pinhais</footer>
-          </div>
-        </article>
-
-        <!-- 4 — sem imagem -->
-        <article class="testi-card testi-card--no-img">
-          <div class="testi-card__body">
-            <div class="testi-card__stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
-            <p>"Não testei mais parece de boa qualidade, são pequenas, mais a descrição está no anúncios. Comprei pra minha mãe q mora sozinha. Pra ela vai ser ótimo."</p>
-            <footer><strong>Ana Paula</strong> · Campina Grande do Sul</footer>
+          <span class="testi-card__img-count" aria-hidden="true">1 / 3</span>
+          <div class="testi-card__overlay">
+            <div class="testi-card__stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+            <p class="testi-card__preview">"Panelas lindas, as tampas cabem em todas as panelas."</p>
+            <p class="testi-card__author">Carla · Curitiba</p>
+            <button class="testi-card__more" type="button" aria-label="Ver avaliação completa de Carla">Ver tudo</button>
           </div>
         </article>
 
-        <!-- 5 — sem imagem -->
-        <article class="testi-card testi-card--no-img">
-          <div class="testi-card__body">
-            <div class="testi-card__stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
-            <p>"São muito bonitas! bem fina e levinhas, tampas são bem grossas e resistentes tudo de acordo com o que foi apresentado amei!!!"</p>
-            <footer><strong>Márcia</strong> · Colombo</footer>
+        <!-- 3 — Patrícia · 2 imagens -->
+        <article class="testi-card" data-testi-card
+          data-gallery='["assets/depoimentos/dep-3a.jpg","assets/depoimentos/dep-3b.jpg"]'
+          data-text="Surpreendido com a qualidade! o jogo de panelas tem um acabamento impecável e o material parece ser bem resistente. Pelo preço pago, o custo-benefício é imbatível. Já testei e a antiaderência é nota 10, nada gruda. Recomendo muito!"
+          data-name="Patrícia"
+          data-location="Pinhais">
+          <div class="testi-card__img-wrap">
+            <img src="assets/depoimentos/dep-3a.jpg" alt="Jogo Marrom desembalado" loading="lazy" />
+          </div>
+          <span class="testi-card__img-count" aria-hidden="true">1 / 2</span>
+          <div class="testi-card__overlay">
+            <div class="testi-card__stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+            <p class="testi-card__preview">"Surpreendido com a qualidade! acabamento impecável e material bem resistente."</p>
+            <p class="testi-card__author">Patrícia · Pinhais</p>
+            <button class="testi-card__more" type="button" aria-label="Ver avaliação completa de Patrícia">Ver tudo</button>
+          </div>
+        </article>
+
+        <!-- 4 — Ana Paula · sem imagem -->
+        <article class="testi-card testi-card--no-img" data-testi-card
+          data-text="Não testei mais parece de boa qualidade, são pequenas, mais a descrição está no anúncios. Comprei pra minha mãe q mora sozinha. Pra ela vai ser ótimo."
+          data-name="Ana Paula"
+          data-location="Campina Grande do Sul">
+          <div class="testi-card__overlay">
+            <div class="testi-card__stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+            <p class="testi-card__preview">"Não testei mais parece de boa qualidade. Comprei pra minha mãe q mora sozinha."</p>
+            <p class="testi-card__author">Ana Paula · Campina Grande do Sul</p>
+            <button class="testi-card__more" type="button" aria-label="Ver avaliação completa de Ana Paula">Ver tudo</button>
+          </div>
+        </article>
+
+        <!-- 5 — Márcia · sem imagem -->
+        <article class="testi-card testi-card--no-img" data-testi-card
+          data-text="São muito bonitas! bem fina e levinhas, tampas são bem grossas e resistentes tudo de acordo com o que foi apresentado amei!!!"
+          data-name="Márcia"
+          data-location="Colombo">
+          <div class="testi-card__overlay">
+            <div class="testi-card__stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+            <p class="testi-card__preview">"São muito bonitas! bem fina e levinhas, tampas bem grossas e resistentes."</p>
+            <p class="testi-card__author">Márcia · Colombo</p>
+            <button class="testi-card__more" type="button" aria-label="Ver avaliação completa de Márcia">Ver tudo</button>
           </div>
         </article>
 

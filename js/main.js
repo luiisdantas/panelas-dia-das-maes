@@ -505,26 +505,96 @@
     document.querySelectorAll('.benefit, .testi-card, .gallery__item').forEach((el) => io.observe(el));
   }
 
-  /* ── TESTIMONIALS LIGHTBOX ── */
-  const testiWraps = document.querySelectorAll('[data-testi-img]');
-  testiWraps.forEach(wrap => {
-    wrap.addEventListener('click', () => {
-      const galleryAttr = wrap.dataset.gallery;
-      if (galleryAttr) {
-        // Multi-image: build fake slide elements from JSON list of src paths
-        const srcs = JSON.parse(galleryAttr);
-        const slides = srcs.map(src => {
-          const el  = document.createElement('div');
-          const img = document.createElement('img');
-          img.src = src;
-          el.appendChild(img);
-          return el;
+  /* ── TESTIMONIALS MODAL ── */
+  (function () {
+    // Build modal DOM
+    const tmEl = document.createElement('div');
+    tmEl.className = 'testi-modal';
+    tmEl.setAttribute('role', 'dialog');
+    tmEl.setAttribute('aria-modal', 'true');
+    tmEl.setAttribute('aria-label', 'Avaliação completa');
+    tmEl.hidden = true;
+    tmEl.innerHTML =
+      '<div class="testi-modal__sheet">' +
+        '<div class="testi-modal__handle"></div>' +
+        '<button class="testi-modal__close" type="button" aria-label="Fechar">✕</button>' +
+        '<div class="testi-modal__img-area is-empty"></div>' +
+        '<div class="testi-modal__body">' +
+          '<div class="testi-modal__stars"></div>' +
+          '<p class="testi-modal__text"></p>' +
+          '<footer class="testi-modal__footer"></footer>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(tmEl);
+
+    const tmImgArea = tmEl.querySelector('.testi-modal__img-area');
+    const tmStars   = tmEl.querySelector('.testi-modal__stars');
+    const tmText    = tmEl.querySelector('.testi-modal__text');
+    const tmFooter  = tmEl.querySelector('.testi-modal__footer');
+    let tmSrcs = [], tmIdx = 0;
+
+    function tmRenderImg() {
+      if (!tmSrcs.length) { tmImgArea.className = 'testi-modal__img-area is-empty'; return; }
+      tmImgArea.className = 'testi-modal__img-area';
+      const total = tmSrcs.length;
+      const hasPrev = total > 1;
+      tmImgArea.innerHTML =
+        '<img src="' + tmSrcs[tmIdx] + '" alt="" />' +
+        (hasPrev
+          ? '<button class="testi-modal__nav testi-modal__nav--prev" aria-label="Anterior">‹</button>' +
+            '<button class="testi-modal__nav testi-modal__nav--next" aria-label="Próximo">›</button>' +
+            '<div class="testi-modal__dots">' +
+              tmSrcs.map((_, i) =>
+                '<span class="testi-modal__dot' + (i === tmIdx ? ' is-active' : '') + '"></span>'
+              ).join('') +
+            '</div>'
+          : '');
+      if (hasPrev) {
+        tmImgArea.querySelector('.testi-modal__nav--prev').addEventListener('click', function (e) {
+          e.stopPropagation();
+          tmIdx = ((tmIdx - 1) + total) % total;
+          tmRenderImg();
         });
-        lbOpen(slides, 0);
-      } else {
-        // Single image: open just the wrap itself
-        lbOpen([wrap], 0);
+        tmImgArea.querySelector('.testi-modal__nav--next').addEventListener('click', function (e) {
+          e.stopPropagation();
+          tmIdx = (tmIdx + 1) % total;
+          tmRenderImg();
+        });
       }
+    }
+
+    function tmOpen(card) {
+      const galleryAttr = card.dataset.gallery;
+      tmSrcs = galleryAttr ? JSON.parse(galleryAttr)
+             : (card.querySelector('.testi-card__img-wrap img')
+                ? [card.querySelector('.testi-card__img-wrap img').src]
+                : []);
+      tmIdx  = 0;
+      tmRenderImg();
+      tmStars.textContent  = '⭐⭐⭐⭐⭐';
+      tmText.textContent   = '"' + card.dataset.text + '"';
+      tmFooter.innerHTML   = '<strong>' + card.dataset.name + '</strong> · ' + card.dataset.location;
+      tmEl.hidden = false;
+      document.body.style.overflow = 'hidden';
+      tmEl.querySelector('.testi-modal__close').focus();
+    }
+
+    function tmClose() {
+      tmEl.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    tmEl.querySelector('.testi-modal__close').addEventListener('click', tmClose);
+    tmEl.addEventListener('click', function (e) { if (e.target === tmEl) tmClose(); });
+    document.addEventListener('keydown', function (e) {
+      if (!tmEl.hidden && e.key === 'Escape') tmClose();
     });
-  });
+
+    // Wire cards: clicking card or "Ver tudo" button opens modal
+    document.querySelectorAll('[data-testi-card]').forEach(function (card) {
+      const btn = card.querySelector('.testi-card__more');
+      if (btn) btn.addEventListener('click', function (e) { e.stopPropagation(); tmOpen(card); });
+      card.addEventListener('click', function () { tmOpen(card); });
+    });
+  }());
 })();
