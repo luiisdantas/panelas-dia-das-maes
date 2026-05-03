@@ -502,6 +502,15 @@
       },
       { rootMargin: '0px 0px -10% 0px' }
     );
-    document.querySelectorAll('.benefit, .testimonial, .gallery__item').forEach((el) => io.observe(el));
+    document.querySelectorAll('.benefit, .testi-card, .gallery__item').forEach((el) => io.observe(el));
+  }
+
+  /* ── TESTIMONIALS LIGHTBOX ── */
+  const testiWraps = document.querySelectorAll('[data-testi-img]');
+  if (testiWraps.length) {
+    const wrapsArr = Array.from(testiWraps);
+    wrapsArr.forEach((wrap, i) => {
+      wrap.addEventListener('click', () => lbOpen(wrapsArr, i));
+    });
   }
 })();

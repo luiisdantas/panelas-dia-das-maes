@@ -676,45 +676,76 @@ p  { margin: 0 0 1em; }
 .kit-video__cta[aria-pressed="true"]:hover { background: var(--cappuccino-700); }
 
 /* ============================================================
-   TESTIMONIALS
+   TESTIMONIALS — horizontal scroll carousel
 ============================================================ */
-.testimonials { padding: 56px 0; background: var(--white); }
-.testimonials__grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: 1fr;
+.testimonials { padding: 56px 0 40px; background: var(--white); overflow: hidden; }
+.testimonials .container { padding-bottom: 0; }
+
+.testi-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px var(--gap) 28px;
+  scrollbar-width: none;
 }
-.testimonial {
+.testi-track::-webkit-scrollbar { display: none; }
+
+.testi-card {
+  flex: 0 0 82%;
+  max-width: 320px;
+  scroll-snap-align: start;
   background: var(--cream-50);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 22px;
   box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image area */
+.testi-card__img-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--cream-100);
+  flex-shrink: 0;
   position: relative;
 }
-.testimonial::before {
-  content: '"';
+/* Camera placeholder icon shown until real image loads */
+.testi-card__img-wrap::before {
+  content: '📸';
   position: absolute;
-  top: -14px; left: 14px;
-  font-size: 3.5rem;
-  color: var(--cream-200);
-  line-height: 1;
-  font-family: Georgia, serif;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  opacity: 0.25;
 }
-.testimonial__stars {
-  font-size: var(--fs-md);
-  margin-bottom: 8px;
+.testi-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.28s ease;
 }
-.testimonial p {
+.testi-card__img-wrap:hover img { transform: scale(1.04); }
+
+/* Text area */
+.testi-card__body { padding: 16px 18px 18px; flex: 1; }
+.testi-card__stars { font-size: var(--fs-md); margin-bottom: 8px; }
+.testi-card__body p {
   color: var(--ink-2);
   font-size: var(--fs-sm);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   line-height: 1.55;
 }
-.testimonial footer {
-  font-size: var(--fs-xs);
-  color: var(--ink-3);
-}
+.testi-card__body footer { font-size: var(--fs-xs); color: var(--ink-3); }
 
 /* ============================================================
    OFFER
@@ -1152,7 +1183,9 @@ p  { margin: 0 0 1em; }
   .hero__grid > .variations   { grid-area: vars;  margin: 0; }
   .hero__content              { grid-area: content; }
 
-  .testimonials__grid { grid-template-columns: repeat(3, 1fr); }
+  /* testimonials carousel: fixed card width so 3 are visible */
+  .testi-track { padding-left: max(var(--gap), calc((100vw - 1120px) / 2 + var(--gap))); }
+  .testi-card  { flex: 0 0 300px; max-width: 300px; }
 
   .footer__grid { grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 28px; }
   .footer { padding-bottom: 48px; } /* sem sticky em desktop */
