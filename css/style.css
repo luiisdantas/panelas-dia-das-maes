@@ -226,7 +226,14 @@ p  { margin: 0 0 1em; }
   text-align: left;
   margin-bottom: 22px;
 }
-.hero__header .hero__title { margin-bottom: 0; }
+.hero__header .hero__title { margin-bottom: 8px; }
+.hero__model {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  letter-spacing: 0.01em;
+}
+.hero__model strong { color: var(--coffee-900); font-weight: 700; }
 
 .hero__grid {
   display: grid;
@@ -343,6 +350,63 @@ p  { margin: 0 0 1em; }
   padding: 10px 14px;
   font-size: var(--fs-sm);
 }
+
+/* ---------- Variations (color picker) ---------- */
+.variations {
+  margin: 0 0 22px;
+}
+.variations__label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--coffee-900);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+.variations__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.variation {
+  background: var(--white);
+  border: 2px solid var(--cream-200);
+  border-radius: var(--radius);
+  padding: 8px 6px 10px;
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  transition: border-color 0.18s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  text-align: center;
+  min-height: 0;
+}
+.variation:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.variation[aria-checked="true"] {
+  border-color: var(--cappuccino-600);
+  box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.15);
+}
+.variation__swatch {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--cream-200);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px rgba(46, 30, 12, 0.10);
+  flex-shrink: 0;
+}
+/* Fallback de cor enquanto a foto da variação não carrega */
+.variation__swatch[data-color="ivory"]    { background-color: #EFE4D2; background-image: url('../assets/produto/cores/ivory.jpg'); }
+.variation__swatch[data-color="marrom"]   { background-color: #5C3A2E; background-image: url('../assets/produto/cores/marrom.jpg'); }
+.variation__swatch[data-color="sahara"]   { background-color: #C7A57A; background-image: url('../assets/produto/cores/sahara.jpg'); }
+.variation__swatch[data-color="blackgold"]{ background-color: #1F1A14; background-image: url('../assets/produto/cores/black-gold.jpg'); }
+.variation__name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--coffee-900);
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+.variation[aria-checked="true"] .variation__name { color: var(--cappuccino-700); }
 
 .hero__price {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;

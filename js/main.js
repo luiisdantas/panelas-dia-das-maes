@@ -272,6 +272,63 @@
     }
   });
 
+  /* ---------- VARIATIONS (color picker) ---------- */
+  const variationButtons = document.querySelectorAll('[data-variation]');
+  const variationTargetImg = document.querySelector('[data-variation-target]');
+  const productNameEl = document.querySelector('[data-product-name]');
+  const ctaYampiEls = document.querySelectorAll('[data-cta-yampi]');
+  const carouselTrack = document.querySelector('[data-carousel-track]');
+
+  function selectVariation(btn) {
+    if (!btn) return;
+    const url  = btn.dataset.url || '#';
+    const img  = btn.dataset.img;
+    const name = btn.dataset.name || '';
+
+    // Estado dos botões
+    variationButtons.forEach((b) => {
+      b.setAttribute('aria-checked', b === btn ? 'true' : 'false');
+    });
+
+    // Foto principal do carrossel (slide 2)
+    if (variationTargetImg && img) {
+      variationTargetImg.src = img;
+      variationTargetImg.alt = `Jogo de Panelas ${name}`;
+    }
+
+    // Nome do modelo abaixo da H1
+    if (productNameEl) {
+      productNameEl.innerHTML = '';
+      const txt = document.createTextNode('Modelo: ');
+      const strong = document.createElement('strong');
+      strong.textContent = name;
+      const tail = document.createTextNode(' · 10 peças');
+      productNameEl.append(txt, strong, tail);
+    }
+
+    // URL de checkout em todos os CTAs
+    ctaYampiEls.forEach((el) => {
+      if (el.tagName === 'A') el.href = url;
+    });
+
+    // Scrolla o carrossel até o slide da variação (slide 2, índice 1)
+    if (carouselTrack) {
+      const targetSlide = carouselTrack.querySelectorAll('.carousel__slide')[1];
+      if (targetSlide) {
+        targetSlide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }
+
+  variationButtons.forEach((btn) => {
+    btn.addEventListener('click', () => selectVariation(btn));
+  });
+
+  // Estado inicial: usa o aria-checked já marcado no HTML
+  const initialVariation = document.querySelector('[data-variation][aria-checked="true"]')
+    || variationButtons[0];
+  if (initialVariation) selectVariation(initialVariation);
+
   /* ---------- KIT VIDEO (autoplay mudo + botão toggle de áudio) ---------- */
   const kitVideo = document.querySelector('.kit-video__el');
   const kitToggle = document.querySelector('[data-kit-video-toggle]');

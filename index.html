@@ -24,7 +24,7 @@
   <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="assets/produto/01.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/produto/cores/ivory.jpg" fetchpriority="high" />
   <link rel="icon" type="image/svg+xml" href="assets/icones/favicon.svg" />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -112,6 +112,9 @@
           <h1 id="hero-title" class="hero__title">
             Especial de <span>Dia das Mães</span>
           </h1>
+          <p class="hero__model" data-product-name>
+            Modelo: <strong>Ivory Disegno</strong> · 10 peças
+          </p>
         </div>
 
         <div class="hero__grid">
@@ -121,8 +124,8 @@
               <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="1 de 8 — vídeo de abertura">
                 <video src="assets/produto/07.mp4" muted loop playsinline preload="metadata" autoplay aria-label="Vídeo de abertura do jogo de panelas"></video>
               </div>
-              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="2 de 8">
-                <img src="assets/produto/01.jpg" alt="Jogo de panelas cappuccino — foto 1" loading="eager" fetchpriority="high" />
+              <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="2 de 8 — cor selecionada">
+                <img data-variation-target src="assets/produto/cores/ivory.jpg" alt="Jogo de Panelas Ivory Disegno" loading="eager" fetchpriority="high" />
               </div>
               <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="3 de 8">
                 <img src="assets/produto/02.jpg" alt="Jogo de panelas cappuccino — foto 2" loading="lazy" />
@@ -160,13 +163,55 @@
             <li>✓ <strong>Entrega garantida</strong> antes do Dia das Mães (10/05)</li>
           </ul>
 
+          <div class="variations" data-variations>
+            <span class="variations__label">Escolha a cor:</span>
+            <div class="variations__grid" role="radiogroup" aria-label="Cor do jogo de panelas">
+              <button type="button" class="variation"
+                      data-variation
+                      data-name="Ivory Disegno"
+                      data-img="assets/produto/cores/ivory.jpg"
+                      data-url="https://cozinha-bonita.pay.yampi.com.br/r/IECUTXCKCR"
+                      role="radio" aria-checked="true">
+                <span class="variation__swatch" data-color="ivory"></span>
+                <span class="variation__name">Ivory</span>
+              </button>
+              <button type="button" class="variation"
+                      data-variation
+                      data-name="Marrom Disegno"
+                      data-img="assets/produto/cores/marrom.jpg"
+                      data-url="https://cozinha-bonita.pay.yampi.com.br/r/Q0AYBKQAA1"
+                      role="radio" aria-checked="false">
+                <span class="variation__swatch" data-color="marrom"></span>
+                <span class="variation__name">Marrom</span>
+              </button>
+              <button type="button" class="variation"
+                      data-variation
+                      data-name="Sahara"
+                      data-img="assets/produto/cores/sahara.jpg"
+                      data-url="https://cozinha-bonita.pay.yampi.com.br/r/SJFJ93769M"
+                      role="radio" aria-checked="false">
+                <span class="variation__swatch" data-color="sahara"></span>
+                <span class="variation__name">Sahara</span>
+              </button>
+              <button type="button" class="variation"
+                      data-variation
+                      data-name="Black Gold Disegno"
+                      data-img="assets/produto/cores/black-gold.jpg"
+                      data-url="https://cozinha-bonita.pay.yampi.com.br/r/I2ITWGH9FV"
+                      role="radio" aria-checked="false">
+                <span class="variation__swatch" data-color="blackgold"></span>
+                <span class="variation__name">Black Gold</span>
+              </button>
+            </div>
+          </div>
+
           <div class="hero__price">
             <span class="hero__price-old">De <s>R$329</s></span>
             <span class="hero__price-now">Por <strong>R$269</strong></span>
             <span class="hero__price-tag">ou 10x de R$26,90 sem juros</span>
           </div>
 
-          <a href="[URL_YAMPI]" class="btn btn--primary btn--xl" data-track="cta_hero">
+          <a href="https://cozinha-bonita.pay.yampi.com.br/r/IECUTXCKCR" class="btn btn--primary btn--xl" data-track="cta_hero" data-cta-yampi target="_blank" rel="noopener">
             👉 QUERO PRESENTEAR MINHA MÃE
           </a>
 
@@ -382,7 +427,7 @@
             <p id="shipping-result" class="shipping__result" role="status" aria-live="polite"></p>
           </form>
 
-          <a href="[URL_YAMPI]" class="btn btn--primary btn--xl offer__cta" data-track="cta_oferta">
+          <a href="https://cozinha-bonita.pay.yampi.com.br/r/IECUTXCKCR" class="btn btn--primary btn--xl offer__cta" data-track="cta_oferta" data-cta-yampi target="_blank" rel="noopener">
             👉 GARANTIR O MEU JOGO AGORA
           </a>
 
@@ -476,7 +521,7 @@
   </footer>
 
   <!-- CTA sticky mobile -->
-  <a href="[URL_YAMPI]" class="sticky-cta" data-track="cta_sticky">
+  <a href="https://cozinha-bonita.pay.yampi.com.br/r/IECUTXCKCR" class="sticky-cta" data-track="cta_sticky" data-cta-yampi target="_blank" rel="noopener">
     <span>R$269 · 10x sem juros</span>
     <strong>COMPRAR AGORA →</strong>
   </a>
