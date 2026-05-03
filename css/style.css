@@ -468,40 +468,19 @@ p  { margin: 0 0 1em; }
   to   { transform: scale(1);   opacity: 1; }
 }
 
-.variation__swatch {
-  width: 54px; height: 54px;
-  border-radius: 50%;
+.variation__thumb {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
   flex-shrink: 0;
-  border: 3px solid var(--white);
-  box-shadow: 0 0 0 1px rgba(46, 30, 12, 0.18), 0 4px 8px rgba(46, 30, 12, 0.12);
-  background-color: var(--cream-200);
-  background-size: cover;
-  background-position: center;
+  box-shadow: 0 2px 6px rgba(46, 30, 12, 0.12);
+  transition: transform 0.18s ease;
 }
-/* Identidade visual via CSS puro — independe de arquivo externo */
-.variation__swatch[data-color="ivory"] {
-  background:
-    radial-gradient(circle at 30% 30%, #FAF1E0 0%, #EBDDC2 60%, #DBC9A8 100%);
-}
-.variation__swatch[data-color="marrom"] {
-  background:
-    radial-gradient(circle at 30% 30%, #6B4533 0%, #4A2E20 60%, #2D1B11 100%);
-}
-.variation__swatch[data-color="sahara"] {
-  background:
-    repeating-linear-gradient(
-      102deg,
-      #DCBE96 0px,
-      #BC9C73 6px,
-      #C9A983 10px,
-      #B08D63 14px
-    );
-}
-.variation__swatch[data-color="blackgold"] {
-  background:
-    radial-gradient(circle at 25% 25%, #C9A14B 1.2px, transparent 1.6px) 0 0 / 8px 8px,
-    radial-gradient(circle at 75% 75%, #A07832 1.2px, transparent 1.6px) 4px 4px / 8px 8px,
-    radial-gradient(circle at 30% 30%, #3A3324 0%, #1A140C 60%, #0A0805 100%);
+.variation:hover .variation__thumb  { transform: scale(1.04); }
+.variation[aria-checked="true"] .variation__thumb {
+  box-shadow: 0 0 0 2px var(--cappuccino-600), 0 4px 10px rgba(46, 30, 12, 0.18);
 }
 
 .variation__name {
