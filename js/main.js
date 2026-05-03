@@ -201,6 +201,99 @@
     });
   });
 
+  /* ---------- LIGHTBOX ---------- */
+  const lbEl = document.createElement('div');
+  lbEl.className = 'lightbox';
+  lbEl.setAttribute('role', 'dialog');
+  lbEl.setAttribute('aria-modal', 'true');
+  lbEl.setAttribute('aria-label', 'Visualização ampliada');
+  lbEl.hidden = true;
+  lbEl.innerHTML =
+    '<button class="lightbox__close" type="button" aria-label="Fechar">✕</button>' +
+    '<button class="lightbox__prev" type="button" aria-label="Slide anterior">‹</button>' +
+    '<button class="lightbox__next" type="button" aria-label="Próximo slide">›</button>' +
+    '<div class="lightbox__stage"></div>' +
+    '<button class="lightbox__sound" type="button" hidden>' +
+      '<span class="lightbox__sound-icon" aria-hidden="true">🔇</span>' +
+      '<span class="lightbox__sound-label">Toque para ouvir</span>' +
+    '</button>';
+  document.body.appendChild(lbEl);
+
+  const lbStage     = lbEl.querySelector('.lightbox__stage');
+  const lbCloseBtn  = lbEl.querySelector('.lightbox__close');
+  const lbPrevBtn   = lbEl.querySelector('.lightbox__prev');
+  const lbNextBtn   = lbEl.querySelector('.lightbox__next');
+  const lbSoundBtn  = lbEl.querySelector('.lightbox__sound');
+  const lbSoundIcon = lbEl.querySelector('.lightbox__sound-icon');
+  const lbSoundLbl  = lbEl.querySelector('.lightbox__sound-label');
+
+  let lbSlides = [], lbIdx = 0, lbVid = null;
+
+  function lbOpen(slides, i) {
+    lbSlides = slides;
+    lbShow(i);
+    lbEl.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lbCloseBtn.focus();
+  }
+
+  function lbClose() {
+    lbEl.hidden = true;
+    document.body.style.overflow = '';
+    if (lbVid) { lbVid.pause(); lbVid = null; }
+    lbStage.innerHTML = '';
+    lbSoundBtn.hidden = true;
+  }
+
+  function lbShow(i) {
+    const n = lbSlides.length;
+    lbIdx = ((i % n) + n) % n;
+    if (lbVid) { lbVid.pause(); lbVid = null; }
+    lbStage.innerHTML = '';
+    lbSoundBtn.hidden = true;
+
+    const slide    = lbSlides[lbIdx];
+    const origVid  = slide.querySelector('video');
+    const origImg  = slide.querySelector('img');
+
+    if (origVid) {
+      const v = document.createElement('video');
+      v.src = origVid.src;
+      v.muted = true; v.loop = true; v.playsinline = true; v.autoplay = true;
+      lbStage.appendChild(v);
+      v.play().catch(() => {});
+      lbVid = v;
+
+      lbSoundBtn.hidden = false;
+      lbSoundIcon.textContent = '🔇';
+      lbSoundLbl.textContent  = 'Toque para ouvir';
+      lbSoundBtn.onclick = () => {
+        v.muted = !v.muted;
+        lbSoundIcon.textContent = v.muted ? '🔇' : '🔊';
+        lbSoundLbl.textContent  = v.muted ? 'Toque para ouvir' : 'Silenciar';
+      };
+    } else if (origImg) {
+      const img = document.createElement('img');
+      img.src = origImg.src;
+      img.alt = origImg.alt || '';
+      lbStage.appendChild(img);
+    }
+
+    lbPrevBtn.hidden = n <= 1;
+    lbNextBtn.hidden = n <= 1;
+  }
+
+  lbCloseBtn.addEventListener('click', lbClose);
+  lbPrevBtn.addEventListener('click', () => lbShow(lbIdx - 1));
+  lbNextBtn.addEventListener('click', () => lbShow(lbIdx + 1));
+  lbEl.addEventListener('click', (e) => { if (e.target === lbEl) lbClose(); });
+  document.addEventListener('keydown', (e) => {
+    if (lbEl.hidden) return;
+    if (e.key === 'Escape')      lbClose();
+    if (e.key === 'ArrowLeft')   lbShow(lbIdx - 1);
+    if (e.key === 'ArrowRight')  lbShow(lbIdx + 1);
+  });
+
   /* ---------- HERO CAROUSEL (scroll-snap + arrows + dots) ---------- */
   document.querySelectorAll('[data-carousel]').forEach((root) => {
     const track = root.querySelector('[data-carousel-track]');
@@ -230,6 +323,45 @@
         dots.push(b);
       });
     }
+
+    // Botão de som nos slides de vídeo (igual ao kit video)
+    slides.forEach((slide) => {
+      const v = slide.querySelector('video');
+      if (!v) return;
+
+      const btn   = document.createElement('button');
+      btn.type    = 'button';
+      btn.className = 'carousel__sound-btn';
+      btn.setAttribute('aria-label', 'Ativar som do vídeo');
+      btn.setAttribute('aria-pressed', 'false');
+
+      const icon  = document.createElement('span');
+      icon.className = 'carousel__sound-icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = '🔊';
+
+      const lbl   = document.createElement('span');
+      lbl.className = 'carousel__sound-label';
+      lbl.textContent = 'Toque para ouvir';
+
+      btn.append(icon, lbl);
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); // não abre lightbox
+        v.muted = !v.muted;
+        const muted = v.muted;
+        icon.textContent = muted ? '🔊' : '🔇';
+        lbl.textContent  = muted ? 'Toque para ouvir' : 'Silenciar';
+        btn.setAttribute('aria-pressed', muted ? 'false' : 'true');
+        btn.setAttribute('aria-label',   muted ? 'Ativar som do vídeo' : 'Silenciar vídeo');
+        v.play().catch(() => {});
+      });
+      slide.appendChild(btn);
+    });
+
+    // Clique no slide abre lightbox
+    slides.forEach((slide, i) => {
+      slide.addEventListener('click', () => lbOpen(slides, i));
+    });
 
     function goTo(i) {
       const clamped = Math.max(0, Math.min(slides.length - 1, i));
