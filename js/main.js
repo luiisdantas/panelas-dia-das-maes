@@ -516,13 +516,17 @@
     tmEl.hidden = true;
     tmEl.innerHTML =
       '<div class="testi-modal__sheet">' +
-        '<div class="testi-modal__handle"></div>' +
-        '<button class="testi-modal__close" type="button" aria-label="Fechar">✕</button>' +
-        '<div class="testi-modal__img-area is-empty"></div>' +
-        '<div class="testi-modal__body">' +
-          '<div class="testi-modal__stars"></div>' +
-          '<p class="testi-modal__text"></p>' +
-          '<footer class="testi-modal__footer"></footer>' +
+        '<div class="testi-modal__topbar">' +
+          '<div class="testi-modal__handle"></div>' +
+          '<button class="testi-modal__close" type="button" aria-label="Fechar">✕</button>' +
+        '</div>' +
+        '<div class="testi-modal__scroll">' +
+          '<div class="testi-modal__img-area is-empty"></div>' +
+          '<div class="testi-modal__body">' +
+            '<div class="testi-modal__stars"></div>' +
+            '<p class="testi-modal__text"></p>' +
+            '<footer class="testi-modal__footer"></footer>' +
+          '</div>' +
         '</div>' +
       '</div>';
     document.body.appendChild(tmEl);

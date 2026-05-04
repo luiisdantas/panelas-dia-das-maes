@@ -830,42 +830,66 @@ p  { margin: 0 0 1em; }
 }
 .testi-modal[hidden] { display: none; }
 
+/* Sheet: flex column, fixed height. Topbar floats, scroll area scrolls. */
 .testi-modal__sheet {
   background: var(--white);
   border-radius: 18px 18px 0 0;
   width: 100%;
-  max-width: 520px;
+  max-width: 440px;
   max-height: 92dvh;
-  overflow-y: auto;
-  position: relative;
-  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-/* Drag handle */
+/* Topbar: handle + close btn, floats over image via negative margin */
+.testi-modal__topbar {
+  flex-shrink: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  margin-bottom: -50px;   /* pulls scroll area up — topbar overlays image */
+  position: relative;
+  z-index: 10;
+  pointer-events: none;   /* pass clicks through to image */
+}
+
 .testi-modal__handle {
   width: 40px; height: 4px;
-  background: var(--line);
+  background: rgba(255,255,255,0.55);
   border-radius: 2px;
-  margin: 10px auto 0;
 }
 
+/* Close btn re-enables pointer events inside the pointer-events:none topbar */
 .testi-modal__close {
-  position: absolute;
-  top: 14px; right: 14px;
-  background: rgba(0,0,0,0.08);
+  pointer-events: auto;
+  background: rgba(0,0,0,0.45);
   border: none;
-  width: 30px; height: 30px;
+  width: 32px; height: 32px;
   border-radius: 50%;
   font-size: 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ink-1);
+  color: #fff;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  flex-shrink: 0;
 }
-.testi-modal__close:hover { background: rgba(0,0,0,0.14); }
+.testi-modal__close:hover { background: rgba(0,0,0,0.68); }
 
-/* Image area inside modal */
+/* Scroll area: image + text scroll together, topbar stays above */
+.testi-modal__scroll {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  min-height: 0; /* flex fix: allows shrinking */
+}
+
+/* Full 9:16 portrait — no height cap */
 .testi-modal__img-area {
   width: 100%;
   position: relative;
@@ -876,12 +900,12 @@ p  { margin: 0 0 1em; }
 
 .testi-modal__img-area img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 9 / 16;
   object-fit: cover;
   display: block;
 }
 
-/* Prev/next nav inside modal image */
+/* Prev/next nav */
 .testi-modal__nav {
   position: absolute;
   top: 50%; transform: translateY(-50%);
@@ -915,9 +939,11 @@ p  { margin: 0 0 1em; }
 }
 .testi-modal__dot.is-active { background: #fff; }
 
-/* Text body inside modal */
-.testi-modal__body {
-  padding: 20px 22px 32px;
+/* Text body */
+.testi-modal__body { padding: 18px 22px 32px; }
+/* No-image: top space clears the topbar that floats over */
+.testi-modal__img-area.is-empty + .testi-modal__body {
+  padding-top: 58px;
 }
 .testi-modal__stars { font-size: 20px; margin-bottom: 12px; }
 .testi-modal__text {
@@ -926,15 +952,12 @@ p  { margin: 0 0 1em; }
   color: var(--ink-2);
   margin-bottom: 16px;
 }
-.testi-modal__footer {
-  font-size: var(--fs-xs);
-  color: var(--ink-3);
-}
+.testi-modal__footer { font-size: var(--fs-xs); color: var(--ink-3); }
 
-/* Desktop: centered dialog */
+/* Desktop: centered portrait dialog */
 @media (min-width: 600px) {
   .testi-modal { align-items: center; padding: 24px; }
-  .testi-modal__sheet { border-radius: 16px; }
+  .testi-modal__sheet { border-radius: 16px; max-width: 380px; }
   .testi-modal__handle { display: none; }
 }
 
