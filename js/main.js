@@ -428,13 +428,12 @@
       variationTargetImg.src = img;
     }
 
-    // Nome do modelo abaixo da H1
-    if (productNameEl) {
-      productNameEl.innerHTML = '';
+    // Nome do modelo abaixo da H1 (fixo — 4 cores disponíveis)
+    if (productNameEl && productNameEl.childNodes.length === 0) {
       const txt = document.createTextNode('Modelo: ');
       const strong = document.createElement('strong');
-      strong.textContent = name;
-      const tail = document.createTextNode(' · 10 peças');
+      strong.textContent = 'Disegno';
+      const tail = document.createTextNode(' · 4 cores disponíveis');
       productNameEl.append(txt, strong, tail);
     }
 
