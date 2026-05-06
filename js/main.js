@@ -10,8 +10,8 @@
   'use strict';
 
   /* ---------- COUNTDOWN ---------- */
-  // Deadline: 08/05/2026 23:59:59 (horário de Brasília, UTC-03:00)
-  const DEADLINE = new Date('2026-05-08T23:59:59-03:00').getTime();
+  // Deadline: 31/05/2026 23:59:59 (horário de Brasília, UTC-03:00)
+  const DEADLINE = new Date('2026-05-31T23:59:59-03:00').getTime();
 
   const els = {
     d: document.getElementById('cd-days'),

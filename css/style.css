@@ -417,6 +417,12 @@ p  { margin: 0 0 1em; }
 @media (min-width: 480px) {
   .variations__grid { grid-template-columns: repeat(4, 1fr); }
 }
+.variations__note {
+  font-size: .78rem;
+  color: #999;
+  margin-top: .5rem;
+  line-height: 1.4;
+}
 
 .variation {
   position: relative;
