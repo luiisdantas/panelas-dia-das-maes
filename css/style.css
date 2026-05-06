@@ -424,13 +424,13 @@ p  { margin: 0 0 1em; }
   line-height: 1.4;
 }
 .variations--offer {
-  background: rgba(255,255,255,.15);
+  background: var(--cream-50);
+  border: 1px solid var(--cream-200);
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1.25rem;
+  text-align: left;
 }
-.variations--offer .variations__label { color: #fff; }
-.variations--offer .variations__note  { color: rgba(255,255,255,.65); }
 
 .variation {
   position: relative;
@@ -1380,6 +1380,34 @@ p  { margin: 0 0 1em; }
 .lightbox__sound[hidden] { display: none; }
 
 /* ============================================================
+   MOBILE-SPECIFIC PATCHES (< 480px)
+============================================================ */
+@media (max-width: 479px) {
+  /* Countdown: itens não ultrapassam a largura da tela */
+  .countdown { gap: 6px; }
+  .countdown__item { min-width: 0; flex: 1; padding: 8px 4px; }
+  .countdown__item strong { font-size: 1.3rem; }
+
+  /* Preço principal menor em telas muito pequenas */
+  .offer__price-now strong { font-size: 2rem; }
+
+  /* Hero título: cabe em 1 linha em telas ≥ 320px */
+  .hero__title { font-size: clamp(1.5rem, 7vw, 2.25rem); }
+
+  /* Offer box: padding reduzido */
+  .offer__box { padding: 20px 14px; }
+
+  /* Perks: texto menor em mobile pequeno */
+  .offer__perks li { font-size: .85rem; }
+
+  /* Seletor de cores no bloco oferta: 2 colunas em tela pequena */
+  .variations--offer .variations__grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Footer: garante que as 5 colunas ficam empilhadas */
+  .footer__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
    BREAKPOINTS
 ============================================================ */
 
@@ -1415,7 +1443,7 @@ p  { margin: 0 0 1em; }
   .testi-track { padding-left: max(var(--gap), calc((100vw - 1120px) / 2 + var(--gap))); }
   .testi-card  { flex: 0 0 190px; max-width: 190px; }
 
-  .footer__grid { grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 28px; }
+  .footer__grid { grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr; gap: 20px; }
   .footer { padding-bottom: 48px; } /* sem sticky em desktop */
 
   .sticky-cta { display: none; } /* esconde sticky em desktop */
