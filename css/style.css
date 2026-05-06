@@ -423,6 +423,14 @@ p  { margin: 0 0 1em; }
   margin-top: .5rem;
   line-height: 1.4;
 }
+.variations--offer {
+  background: rgba(255,255,255,.15);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+.variations--offer .variations__label { color: #fff; }
+.variations--offer .variations__note  { color: rgba(255,255,255,.65); }
 
 .variation {
   position: relative;
