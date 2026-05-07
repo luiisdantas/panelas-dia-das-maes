@@ -488,6 +488,20 @@
     });
   }
 
+  /* ---------- GALLERY LIGHTBOX ---------- */
+  const galleryItems = Array.from(document.querySelectorAll('.gallery__item'));
+  if (galleryItems.length) {
+    galleryItems.forEach((item, i) => {
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', 'Ampliar imagem');
+      item.addEventListener('click', () => lbOpen(galleryItems, i));
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); lbOpen(galleryItems, i); }
+      });
+    });
+  }
+
   /* ---------- Lazy reveal (leve, sem lib) ---------- */
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(
